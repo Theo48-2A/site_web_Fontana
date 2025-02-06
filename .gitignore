@@ -1,0 +1,37 @@
+# Docker
+*.env
+*.env.*
+docker-compose.override.yml
+
+# Logs et fichiers temporaires
+*.log
+*.lock
+.DS_Store
+
+# PostgreSQL
+db_data/
+
+# IDE pycharm
+*.idea
+
+# Python virtual environment
+mon_env
+
+# Caches Python
+__pycache__/
+*.pyc
+
+*tree.txt
+
+# Le contenu de la bdd
+postgres_data/
+
+# Ignorer tout le contenu du dossier media/
+media/*
+
+# Mais garder le dossier avatars et son contenu spécifique
+!media/avatars/
+!media/avatars/default.jpg
+!media/.gitkeep
+
+
