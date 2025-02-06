@@ -3,7 +3,7 @@ name: Deploy Website with Docker
 on:
   push:
     branches:
-      - main
+      - master
   workflow_dispatch:
 
 jobs:
