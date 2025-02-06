@@ -1,6 +1,6 @@
 services:
   web:
-    build: ./sitetheo  # Assure-toi que le dossier s'appelle bien "sitetheo"
+    build: sitetheo  # Assure-toi que le dossier s'appelle bien "sitetheo"
     container_name: django_cv
     volumes:
       - ./sitetheo:/sitetheo  # Ajusté pour correspondre au WORKDIR

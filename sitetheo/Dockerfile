@@ -15,7 +15,7 @@ COPY . .
 EXPOSE 8000
 
 # Utilisation de gunicorn
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "sitetheo.wsgi:application"]
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "projet.wsgi:application"]
 
 
 
