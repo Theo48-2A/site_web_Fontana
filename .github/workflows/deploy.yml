@@ -29,7 +29,7 @@ jobs:
           docker buildx build --push \
             --tag ${{ secrets.DOCKER_USERNAME }}/imagesitewebfontana:latest \
             --platform linux/amd64 \
-            -f Dockerfile sitetheo/
+            .
 
 
       - name: Deploy to VPS via SSH
@@ -39,7 +39,17 @@ jobs:
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_SSH_KEY }}
           script: |
-            cd ~/siteweb
+            echo "Pulling latest Docker image..."
             docker pull ${{ secrets.DOCKER_USERNAME }}/imagesitewebfontana:latest
-            docker-compose down
-            docker-compose up -d
+
+            echo "Stopping and removing old container..."
+            docker stop django_cv || true
+            docker rm django_cv || true
+
+            echo "Running new container..."
+            docker run -d --name django_cv \
+              -p 8000:8000 \
+              --restart always \
+              ${{ secrets.DOCKER_USERNAME }}/imagesitewebfontana:latest
+
+            echo "Deployment completed successfully!"
