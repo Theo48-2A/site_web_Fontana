@@ -12,10 +12,9 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copier le code du projet
-COPY sitetheo/ .
+COPY . .
 
 # Exposer le port HTTP (Gunicorn tourne en HTTP, pas HTTPS)
-EXPOSE 8000
 
 # Lancer Gunicorn (écoute en HTTP, Nginx gère HTTPS)
 CMD ["gunicorn", "--bind", "0.0.0.0:8000", "projet.wsgi:application"]
