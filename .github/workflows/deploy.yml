@@ -49,14 +49,15 @@ jobs:
 
             echo "🚀 Logging into Docker Hub..."
             
-            cd /home/${{ secrets.VPS_USER }} || exit 1  # Change pour ton répertoire
+            # Récupération ou mise à jour du dépôt sur le VPS
+            cd /home/${{ secrets.VPS_USER }} || exit 1
             if [ -d "site_web_Fontana" ]; then
               cd site_web_Fontana && git pull
             else
               git clone https://github.com/Theo48-2A/site_web_Fontana.git
               cd site_web_Fontana
             fi
-            
+
             docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
 
             echo "🔄 Pulling latest Docker images..."
@@ -67,12 +68,17 @@ jobs:
             docker-compose down || true
             docker rm -f django_cv nginx_proxy || true  # ✅ Supprime les anciens conteneurs
 
+            echo "🔑 Checking SSL certificate..."
+            if [ ! -d "/etc/letsencrypt/live/theo-fontana.com" ]; then
+              echo "🔐 SSL certificate missing, generating one..."
+              sudo certbot certonly --standalone --noninteractive --agree-tos --email contact@theo-fontana.com -d theo-fontana.com -d www.theo-fontana.com
+            else
+              echo "🔄 Renewing SSL certificate if needed..."
+              sudo certbot renew --quiet || true
+            fi
 
             echo "✅ Running new containers..."
             docker-compose up -d --force-recreate
-
-            echo "🔑 Checking SSL certificate renewal..."
-            sudo certbot renew --quiet || true
 
             echo "🔍 Verifying if containers are running..."
             sleep 5
@@ -86,4 +92,3 @@ jobs:
             fi
 
             echo "🎉 ✅ Deployment completed successfully!"
-
