@@ -68,6 +68,11 @@ jobs:
             docker-compose down || true
             docker rm -f django_cv nginx_proxy || true  # ✅ Supprime les anciens conteneurs
 
+            echo "🔧 Installing Certbot if not installed..."
+            if ! command -v certbot &> /dev/null; then
+              sudo apt update && sudo apt install -y certbot
+            fi
+
             echo "🔑 Checking SSL certificate..."
             if [ ! -d "/etc/letsencrypt/live/theo-fontana.com" ]; then
               echo "🔐 SSL certificate missing, generating one..."
