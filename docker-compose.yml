@@ -5,8 +5,6 @@ services:
     restart: always
     expose:
       - "8000"
-    depends_on:
-      - nginx
 
   nginx:
     image: theo482a/imagesitewebfontana-nginx:latest
