@@ -31,7 +31,6 @@ jobs:
             --platform linux/amd64 \
             .
 
-
       - name: Deploy to VPS via SSH
         uses: appleboy/ssh-action@v0.1.10
         with:
@@ -40,7 +39,7 @@ jobs:
           key: ${{ secrets.VPS_SSH_KEY }}
           script: |
             set -e
-            
+
             echo "Logging into Docker Hub..."
             docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
 
@@ -53,8 +52,18 @@ jobs:
 
             echo "Running new container..."
             docker run -d --name django_cv \
-              -p 80:80 \
+              -p 80:80 -p 443:443 \
               --restart always \
               ${{ secrets.DOCKER_USERNAME }}/imagesitewebfontana:latest
 
-            echo "Deployment completed successfully!"
+            echo "Renewing SSL certificate (if needed)..."
+            sudo certbot renew --quiet || true
+
+            echo "Verifying if the container is running..."
+            sleep 5
+            if ! docker ps | grep -q "django_cv"; then
+                echo "❌ ERROR: The container is not running!"
+                exit 1
+            fi
+
+            echo "✅ Deployment completed successfully!"
