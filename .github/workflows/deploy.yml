@@ -65,6 +65,8 @@ jobs:
 
             echo "🛑 Stopping and removing old containers..."
             docker-compose down || true
+            docker rm -f django_cv nginx_proxy || true  # ✅ Supprime les anciens conteneurs
+
 
             echo "✅ Running new containers..."
             docker-compose up -d --force-recreate
