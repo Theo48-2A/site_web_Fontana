@@ -29,7 +29,7 @@ jobs:
           docker buildx build --push \
             --tag ${{ secrets.DOCKER_USERNAME }}/imagesitewebfontana-django:latest \
             --platform linux/amd64 \
-            -f Dockerfile .
+            -f sitetheo/Dockerfile ./sitetheo
 
       - name: Build and push Nginx image
         run: |

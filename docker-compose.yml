@@ -1,10 +1,10 @@
 services:
   django:
-    build: .
+    build: ./sitetheo
     container_name: django_cv
     restart: always
     expose:
-      - "8000"  # Gunicorn écoute sur 8000
+      - "8000"
     depends_on:
       - nginx
 
