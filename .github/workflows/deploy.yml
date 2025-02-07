@@ -48,6 +48,15 @@ jobs:
             set -e
 
             echo "🚀 Logging into Docker Hub..."
+            
+            cd /home/${{ secrets.VPS_USER }} || exit 1  # Change pour ton répertoire
+            if [ -d "site_web_Fontana" ]; then
+              cd site_web_Fontana && git pull
+            else
+              git clone https://github.com/TonGitHub/site_web_Fontana.git
+              cd site_web_Fontana
+            fi
+            
             docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
 
             echo "🔄 Pulling latest Docker images..."

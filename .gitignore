@@ -35,3 +35,6 @@ media/*
 !media/.gitkeep
 
 
+deploy_docker_compose.sh
+
+

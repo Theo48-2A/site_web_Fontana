@@ -1,6 +1,6 @@
 services:
   django:
-    build: ./sitetheo
+    image: theo482a/imagesitewebfontana-django:latest
     container_name: django_cv
     restart: always
     expose:
@@ -9,7 +9,7 @@ services:
       - nginx
 
   nginx:
-    build: ./nginx
+    image: theo482a/imagesitewebfontana-nginx:latest
     container_name: nginx_proxy
     restart: always
     ports:
