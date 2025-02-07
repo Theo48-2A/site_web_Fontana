@@ -28,7 +28,8 @@ jobs:
           docker buildx create --use
           docker buildx build --push \
             --tag ${{ secrets.DOCKER_USERNAME }}/imagesitewebfontana:latest \
-            --platform linux/amd64 .
+            --platform linux/amd64 \
+            -f sitetheo/Dockerfile sitetheo/
 
       - name: Deploy to VPS via SSH
         uses: appleboy/ssh-action@v0.1.10
