@@ -14,8 +14,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY sitetheo/ .
 
 # Exposer le port 8000
-EXPOSE 8000
+EXPOSE 80
 
 # Démarrer Gunicorn
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "projet.wsgi:application"]
+CMD ["gunicorn", "--bind", "0.0.0.0:80", "projet.wsgi:application"]
 
