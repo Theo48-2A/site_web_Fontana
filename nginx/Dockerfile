@@ -1,7 +1,7 @@
 FROM nginx:latest
 
 # Copier la configuration Nginx personnalisée
-COPY ./nginx/default.conf .
+COPY default.conf .
 
 # Exposer HTTP et HTTPS
 EXPOSE 80 443
