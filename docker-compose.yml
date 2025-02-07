@@ -1,0 +1,22 @@
+services:
+  django:
+    build: .
+    container_name: django_cv
+    restart: always
+    expose:
+      - "8000"  # Gunicorn écoute sur 8000
+    depends_on:
+      - nginx
+
+  nginx:
+    build: ./nginx
+    container_name: nginx_proxy
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /etc/letsencrypt:/etc/letsencrypt
+      - /var/www/html:/var/www/html
+    depends_on:
+      - django
