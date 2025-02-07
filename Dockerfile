@@ -19,7 +19,8 @@ COPY sitetheo/ .
 # Copier et donner les permissions aux scripts
 COPY generate_ssl.sh /app/generate_ssl.sh
 COPY redirect-http-to-https.sh /app/redirect-http-to-https.sh
-RUN chmod +x /app/generate_ssl.sh /app/redirect-http-to-https.sh
+COPY entrypoint.sh /app/entrypoint.sh
+RUN chmod +x /app/generate_ssl.sh /app/redirect-http-to-https.sh /app/entrypoint.sh
 
 # Exécuter le script de génération du certificat SSL au premier démarrage
 RUN /app/generate_ssl.sh
@@ -30,9 +31,5 @@ RUN echo "0 3 * * * certbot renew --quiet" > /etc/cron.d/certbot_renew && chmod 
 # Exposer les ports HTTP et HTTPS
 EXPOSE 80 443
 
-# Lancer les services : Redirection HTTP -> HTTPS, Cron, et Gunicorn en HTTPS
-CMD ["/bin/bash", "-c", "
-    nohup /app/redirect-http-to-https.sh &
-    service cron start
-    gunicorn --bind 0.0.0.0:443 --certfile=/etc/letsencrypt/live/theo-fontana.com/fullchain.pem --keyfile=/etc/letsencrypt/live/theo-fontana.com/privkey.pem projet.wsgi:application
-"]
+# Utiliser le script d'entrée pour démarrer les services
+ENTRYPOINT ["/app/entrypoint.sh"]
