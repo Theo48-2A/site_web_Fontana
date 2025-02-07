@@ -17,5 +17,5 @@ COPY sitetheo/ .
 EXPOSE 80
 
 # Démarrer Gunicorn
-CMD ["gunicorn", "--bind", "0.0.0.0:80", "projet.wsgi:application"]
+CMD ["gunicorn", "--bind", "0.0.0.0:443", "projet.wsgi:application"]
 
