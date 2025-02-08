@@ -3,6 +3,10 @@ services:
     image: ${DOCKER_USERNAME}/imagesitewebfontana-django:latest
     container_name: django_cv
     restart: always
+    environment:
+      - ENVIRONMENT=${ENVIRONMENT}
+      - DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY}
+      - ALLOWED_HOSTS=${ALLOWED_HOSTS}
     networks:
       - internal_network  # 🔒 Communication interne uniquement
 

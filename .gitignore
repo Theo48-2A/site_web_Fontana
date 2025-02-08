@@ -2,6 +2,7 @@
 *.env
 *.env.*
 docker-compose.override.yml
+sitetheo/Dockerfile.local
 
 # Logs et fichiers temporaires
 *.log

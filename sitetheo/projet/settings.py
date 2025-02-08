@@ -11,10 +11,21 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
-from config import Config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+import os
+
+# Afficher le répertoire courant
+print("📂 Répertoire courant :", os.getcwd())
+
+# Afficher les fichiers dans ce répertoire
+print("📁 Contenu du répertoire :", os.listdir(os.getcwd()))
+
+# Essayer l'import qui plante
+from projet.config import Config  # 💥 Ceci devrait planter si le fichier n'est pas trouvé
+
 
 
 # Quick-start development settings - unsuitable for production

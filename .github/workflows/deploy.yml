@@ -63,6 +63,9 @@ jobs:
             echo "🔄 Creating .env file for Docker Compose..."
             cat <<EOF > .env
             DOCKER_USERNAME=${{ secrets.DOCKER_USERNAME }}
+            ENVIRONMENT=${{ secrets.ENVIRONMENT }}
+            DJANGO_SECRET_KEY=${{ secrets.DJANGO_SECRET_KEY }}
+            ALLOWED_HOSTS=${{ secrets.ALLOWED_HOSTS }}
             EOF
 
             echo "🔄 Pulling latest Docker images..."
