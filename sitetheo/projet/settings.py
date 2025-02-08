@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 from projet.config import Config
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -31,8 +32,14 @@ ALLOWED_HOSTS = Config.ALLOWED_HOSTS
 if Config.ENVIRONMENT == "production":
    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-
-# Application definition
+############ CONFIGURATION POUR LES FICHIERS STATIQUES ##########################
+# 🔹 Où Django va chercher les fichiers statiques en dev
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")] if DEBUG else []
+# 🔹 URL publique des fichiers statiques
+STATIC_URL = '/static/'
+# 🔹 En production, Django va copier tous les fichiers ici
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")  # Dossier où collectstati
+#################################################################################
 
 INSTALLED_APPS = [
     'django.contrib.admin',
