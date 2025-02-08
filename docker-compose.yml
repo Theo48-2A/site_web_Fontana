@@ -1,20 +1,23 @@
 services:
   django:
-    image: theo482a/imagesitewebfontana-django:latest
+    image: ${DOCKER_USERNAME}/imagesitewebfontana-django:latest
     container_name: django_cv
     restart: always
-    expose:
-      - "8000"
+    networks:
+      - internal_network  # 🔒 Communication interne uniquement
 
   nginx:
-    image: theo482a/imagesitewebfontana-nginx:latest
+    image: ${DOCKER_USERNAME}/imagesitewebfontana-nginx:latest
     container_name: nginx_proxy
     restart: always
+    depends_on:
+      - django  # ✅ Attends que Django démarre avant de lancer Nginx
+    networks:
+      - internal_network  # 🔒 Communication interne uniquement
     ports:
       - "80:80"
       - "443:443"
-    volumes:
-      - /etc/letsencrypt:/etc/letsencrypt
-      - /var/www/html:/var/www/html
-    depends_on:
-      - django
+
+networks:
+  internal_network:
+    driver: bridge

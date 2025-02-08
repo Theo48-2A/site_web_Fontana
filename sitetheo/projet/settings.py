@@ -25,13 +25,8 @@ SECRET_KEY = 'django-insecure-&tv&tu*bgpa*4@v@z8)$&ch$j5yp8rzz**$p6x$$)3^%za=i&e
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    "localhost",
-    "127.0.0.1",
-    "www.theo-fontana.com",
-    "theo-fontana.com",
-    "141.94.22.48"
-]
+ALLOWED_HOSTS = ["nginx"]  # Uniquement les requêtes de Nginx
+
 
 
 # Application definition
