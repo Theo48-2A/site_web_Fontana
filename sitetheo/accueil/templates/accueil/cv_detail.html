@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CV - Théo Fontana</title>
+</head>
+<body>
+    <h1>{{ cv.name }}</h1>
+    <h2>{{ cv.title }}</h2>
+    <p>Email: {{ cv.email }}</p>
+    <p>Téléphone: {{ cv.phone }}</p>
+
+    <h2>Expérience Professionnelle</h2>
+    <ul>
+    {% for exp in cv.experience %}
+        <li><strong>{{ exp.title }}</strong> chez {{ exp.company }} ({{ exp.date }})<br>{{ exp.description }}</li>
+    {% endfor %}
+    </ul>
+
+    <h2>Formation</h2>
+    <ul>
+    {% for edu in cv.education %}
+        <li>{{ edu.degree }} - {{ edu.school }} ({{ edu.year }})</li>
+    {% endfor %}
+    </ul>
+
+    <h2>Compétences</h2>
+    <ul>
+    {% for skill in cv.skills %}
+        <li>{{ skill }}</li>
+    {% endfor %}
+    </ul>
+
+    <h2>Langues</h2>
+    <ul>
+    {% for lang, level in cv.languages.items %}
+        <li>{{ lang }}: {{ level }}</li>
+    {% endfor %}
+    </ul>
+
+    <h2>Projets</h2>
+    <ul>
+    {% for proj in cv.projects %}
+        <li><strong>{{ proj.title }}</strong><br>{{ proj.description }}</li>
+    {% endfor %}
+    </ul>
+
+    <a href="/static/cv.pdf" download>Télécharger le CV en PDF</a>
+</body>
+</html>
