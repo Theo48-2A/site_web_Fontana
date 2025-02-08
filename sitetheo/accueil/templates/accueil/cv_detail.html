@@ -3,86 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CV - Théo Fontana</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-        .navbar {
-            background-color: #333;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-        }
-        .navbar a {
-            float: left;
-            display: block;
-            color: white;
-            text-align: center;
-            padding: 14px 20px;
-            text-decoration: none;
-            font-size: 18px;
-            transition: transform 0.2s;
-        }
-        .navbar a:hover {
-            background-color: #575757;
-            transform: scale(1.2);
-        }
-        .container {
-            padding: 20px;
-            max-width: 800px;
-            margin: auto;
-        }
-        h1, h2 {
-            color: #333;
-        }
-    </style>
+    <title>Mon CV</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
-<body>
-    <div class="navbar">
-        <a href="#accueil">Accueil</a>
-        <a href="#experiences">Expériences</a>
-        <a href="#diplomes">Diplômes</a>
-        <a href="#projets">Projets</a>
-        <a href="#competences">Compétences</a>
-        <a href="#contact">Contact</a>
-    </div>
+<body class="bg-gray-100 flex flex-col min-h-screen">
 
-    <div class="container">
-        <section id="accueil">
-            <h1>Bienvenue sur mon CV</h1>
-            <p>Découvrez mon parcours, mes expériences et mes compétences.</p>
-        </section>
+    <!-- Section Profil -->
+    <header class="w-full bg-gray-900 text-white text-center py-6 relative">
+        <div class="w-full h-40 bg-cover bg-center" style="background-image: url('https://via.placeholder.com/1200x300');"></div>
+        <div class="absolute top-24 left-1/2 transform -translate-x-1/2 border-4 border-white rounded-full overflow-hidden">
+            <img src="https://via.placeholder.com/120" alt="Photo de profil" class="w-24 h-24 object-cover">
+        </div>
+        <h1 class="text-3xl font-bold mt-16">Théo Fontana</h1>
+        <p class="text-gray-300">Développeur Logiciel | Passionné de Technologie</p>
+    </header>
 
-        <section id="experiences">
-            <h2>Expériences professionnelles</h2>
-            <p>🔧 Développeur chez Michelin Motorsport</p>
-            <p>🖥️ Projet Python avec Flask et PostgreSQL pour un service de géophysique</p>
-        </section>
+    <!-- Toolbar -->
+    <nav class="mt-4 bg-white shadow-md py-3 flex justify-center space-x-6">
+        <div class="relative group" x-data="{hover: false}">
+            <button @mouseenter="hover = true" @mouseleave="hover = false" class="p-3 bg-blue-500 text-white rounded-full transition-transform transform group-hover:scale-125">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 14l9-5-9-5-9 5 9 5z" />
+                </svg>
+            </button>
+            <span x-show="hover" class="absolute -bottom-10 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-sm px-3 py-1 rounded">Formation</span>
+        </div>
 
-        <section id="diplomes">
-            <h2>Diplômes</h2>
-            <p>🎓 Master 2 en Génie Logiciel</p>
-        </section>
+        <div class="relative group" x-data="{hover: false}">
+            <button @mouseenter="hover = true" @mouseleave="hover = false" class="p-3 bg-green-500 text-white rounded-full transition-transform transform group-hover:scale-125">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M8 16l3.293-3.293a1 1 0 011.414 0L16 16m1 4H7a2 2 0 01-2-2V7a2 2 0 012-2h10a2 2 0 012 2v11a2 2 0 01-2 2z" />
+                </svg>
+            </button>
+            <span x-show="hover" class="absolute -bottom-10 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-sm px-3 py-1 rounded">Expérience</span>
+        </div>
 
-        <section id="projets">
-            <h2>Projets personnels</h2>
-            <p>📱 Développement d'une application mobile en Flutter</p>
-            <p>🕹️ Création d'un jeu mobile géographique</p>
-        </section>
+        <div class="relative group" x-data="{hover: false}">
+            <button @mouseenter="hover = true" @mouseleave="hover = false" class="p-3 bg-red-500 text-white rounded-full transition-transform transform group-hover:scale-125">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 15.75l2.25 2.25 2.25-2.25m-4.5 3.75h4.5m-7.5-8.25l2.25-2.25 2.25 2.25m-4.5-3.75h4.5" />
+                </svg>
+            </button>
+            <span x-show="hover" class="absolute -bottom-10 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-sm px-3 py-1 rounded">Compétences</span>
+        </div>
+    </nav>
 
-        <section id="competences">
-            <h2>Compétences</h2>
-            <p>✔️ Django, Flask, PostgreSQL, Python</p>
-            <p>✔️ Développement mobile avec Flutter</p>
-        </section>
-
-        <section id="contact">
-            <h2>Contact</h2>
-            <p>Email: theo.fontana@example.com</p>
-        </section>
-    </div>
+    <!-- Contenu -->
+    <main class="mt-12 text-center">
+        <h1 class="text-4xl font-bold text-gray-900">Bienvenue sur mon CV interactif</h1>
+        <p class="mt-4 text-gray-700">Une présentation moderne et engageante de mon parcours.</p>
+    </main>
 </body>
 </html>
