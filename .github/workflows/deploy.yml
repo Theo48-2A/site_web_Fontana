@@ -60,11 +60,6 @@ jobs:
 
             docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
 
-            echo "🔄 Creating .env file for Docker Compose..."
-            cat <<EOF > .env
-            DOCKER_USERNAME=${{ secrets.DOCKER_USERNAME }}
-            EOF
-
             echo "🔄 Pulling latest Docker images..."
             docker pull ${{ secrets.DOCKER_USERNAME }}/imagesitewebfontana-django:latest
             docker pull ${{ secrets.DOCKER_USERNAME }}/imagesitewebfontana-nginx:latest
