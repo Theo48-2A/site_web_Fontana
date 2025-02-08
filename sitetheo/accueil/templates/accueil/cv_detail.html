@@ -1,49 +1,88 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CV - Théo Fontana</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+        }
+        .navbar a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+            font-size: 18px;
+            transition: transform 0.2s;
+        }
+        .navbar a:hover {
+            background-color: #575757;
+            transform: scale(1.2);
+        }
+        .container {
+            padding: 20px;
+            max-width: 800px;
+            margin: auto;
+        }
+        h1, h2 {
+            color: #333;
+        }
+    </style>
 </head>
 <body>
-    <h1>{{ cv.name }}</h1>
-    <h2>{{ cv.title }}</h2>
-    <p>Email: {{ cv.email }}</p>
-    <p>Téléphone: {{ cv.phone }}</p>
+    <div class="navbar">
+        <a href="#accueil">Accueil</a>
+        <a href="#experiences">Expériences</a>
+        <a href="#diplomes">Diplômes</a>
+        <a href="#projets">Projets</a>
+        <a href="#competences">Compétences</a>
+        <a href="#contact">Contact</a>
+    </div>
 
-    <h2>Expérience Professionnelle</h2>
-    <ul>
-    {% for exp in cv.experience %}
-        <li><strong>{{ exp.title }}</strong> chez {{ exp.company }} ({{ exp.date }})<br>{{ exp.description }}</li>
-    {% endfor %}
-    </ul>
+    <div class="container">
+        <section id="accueil">
+            <h1>Bienvenue sur mon CV</h1>
+            <p>Découvrez mon parcours, mes expériences et mes compétences.</p>
+        </section>
 
-    <h2>Formation</h2>
-    <ul>
-    {% for edu in cv.education %}
-        <li>{{ edu.degree }} - {{ edu.school }} ({{ edu.year }})</li>
-    {% endfor %}
-    </ul>
+        <section id="experiences">
+            <h2>Expériences professionnelles</h2>
+            <p>🔧 Développeur chez Michelin Motorsport</p>
+            <p>🖥️ Projet Python avec Flask et PostgreSQL pour un service de géophysique</p>
+        </section>
 
-    <h2>Compétences</h2>
-    <ul>
-    {% for skill in cv.skills %}
-        <li>{{ skill }}</li>
-    {% endfor %}
-    </ul>
+        <section id="diplomes">
+            <h2>Diplômes</h2>
+            <p>🎓 Master 2 en Génie Logiciel</p>
+        </section>
 
-    <h2>Langues</h2>
-    <ul>
-    {% for lang, level in cv.languages.items %}
-        <li>{{ lang }}: {{ level }}</li>
-    {% endfor %}
-    </ul>
+        <section id="projets">
+            <h2>Projets personnels</h2>
+            <p>📱 Développement d'une application mobile en Flutter</p>
+            <p>🕹️ Création d'un jeu mobile géographique</p>
+        </section>
 
-    <h2>Projets</h2>
-    <ul>
-    {% for proj in cv.projects %}
-        <li><strong>{{ proj.title }}</strong><br>{{ proj.description }}</li>
-    {% endfor %}
-    </ul>
+        <section id="competences">
+            <h2>Compétences</h2>
+            <p>✔️ Django, Flask, PostgreSQL, Python</p>
+            <p>✔️ Développement mobile avec Flutter</p>
+        </section>
 
-    <a href="/static/cv.pdf" download>Télécharger le CV en PDF</a>
+        <section id="contact">
+            <h2>Contact</h2>
+            <p>Email: theo.fontana@example.com</p>
+        </section>
+    </div>
 </body>
 </html>
