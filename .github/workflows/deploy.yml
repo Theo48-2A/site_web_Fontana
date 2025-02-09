@@ -107,9 +107,8 @@ jobs:
             sleep 20  # On attend un peu pour s'assurer que Django est bien lancé
 
             echo "ON VA REUSSIR CETTE DEBUG"
-            docker-compose exec -T django_cv bash -c "
-               ls
-            "
+            docker exec -it django_cv /bin/bash ls
+
             echo "📦 Running collectstatic inside Django container..."
             docker-compose exec -T django_cv bash -c "
                cd /app && \
@@ -121,7 +120,5 @@ jobs:
 
             echo "🔍 Verifying static files..."
             docker-compose exec django_cv ls -lah /app/staticfiles
-
-            echo "🎉 ✅ Deployment completed successfully!"
 
             echo "🎉 ✅ Deployment completed successfully!"
