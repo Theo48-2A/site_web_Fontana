@@ -93,7 +93,7 @@ jobs:
             echo "✅ Running new containers..."
             docker-compose --env-file .env up -d --force-recreate
             sleep 60
-            RUN python manage.py collectstatic --noinput
+            python manage.py collectstatic --noinput
             echo "📦 Running collectstatic inside Django container..."
 
             echo "🔍 Verifying if containers are running..."
