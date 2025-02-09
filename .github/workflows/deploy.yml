@@ -108,7 +108,7 @@ jobs:
 
             echo "📦 Running collectstatic inside Django container..."
             docker-compose exec -T django_cv bash -c "
-               export DJANGO_SETTINGS_MODULE=projet.settings && \
+               cd app \
                python manage.py collectstatic --noinput > /app/collectstatic.log 2>&1
             "
 
