@@ -106,6 +106,10 @@ jobs:
             echo "📦 Waiting for Django to be ready..."
             sleep 20  # On attend un peu pour s'assurer que Django est bien lancé
 
+            echo "ON VA REUSSIR CETTE DEBUG"
+            docker-compose exec -T django_cv bash -c "
+               ls
+            "
             echo "📦 Running collectstatic inside Django container..."
             docker-compose exec -T django_cv bash -c "
                cd /app && \
