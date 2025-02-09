@@ -94,6 +94,7 @@ jobs:
             docker-compose --env-file .env up -d --force-recreate
             
             echo "📦 Running collectstatic inside Django container..."
+            sleep 10 
             docker-compose exec django_cv python manage.py collectstatic --noinput
 
             echo "🔍 Verifying if containers are running..."
