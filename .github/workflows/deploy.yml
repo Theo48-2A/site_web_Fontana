@@ -109,4 +109,4 @@ jobs:
             
             docker exec -i django_cv python manage.py collectstatic --noinput
 
-            echo "🎉 ✅ Deployment completed successfully!"
+            echo "🎉 ✅ Deployment completed successfully!!!"
