@@ -73,8 +73,9 @@ jobs:
             docker pull ${{ secrets.DOCKER_USERNAME }}/imagesitewebfontana-nginx:latest
 
             echo "🛑 Stopping and removing old containers..."
-            docker-compose down || true
-            docker rm -f django_cv nginx_proxy || true  # ✅ Supprime les anciens conteneurs
+            docker-compose down -v
+            docker system prune -a --volumes -f
+
 
             echo "🔧 Installing Certbot if not installed..."
             if ! command -v certbot &> /dev/null; then
