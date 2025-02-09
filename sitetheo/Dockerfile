@@ -17,7 +17,6 @@ COPY . .
 RUN mkdir -p /app/staticfiles \
     && chmod -R 777 /app/staticfiles
 
-RUN python manage.py collectstatic --noinput
 
 # Lancer Gunicorn (écoute en HTTP, Nginx gère HTTPS)
 CMD ["gunicorn", "--bind", "0.0.0.0:8000", "projet.wsgi:application"]
