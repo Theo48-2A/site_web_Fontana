@@ -38,7 +38,7 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")] if DEBUG else []
 # 🔹 URL publique des fichiers statiques
 STATIC_URL = '/static/'
 # 🔹 En production, Django va copier tous les fichiers ici
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")  # Dossier où collectstati
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles") if not DEBUG else None
 #################################################################################
 
 INSTALLED_APPS = [

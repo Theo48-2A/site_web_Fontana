@@ -9,6 +9,8 @@ services:
       - ALLOWED_HOSTS=${ALLOWED_HOSTS}
     networks:
       - internal_network  # 🔒 Communication interne uniquement
+    volumes:
+      - ./sitetheo/staticfiles:/app/sitetheo/staticfiles
 
   nginx:
     image: ${DOCKER_USERNAME}/imagesitewebfontana-nginx:latest
@@ -22,6 +24,7 @@ services:
       - "80:80"
       - "443:443"
     volumes:
+      - ./sitetheo/staticfiles:/app/staticfiles
       - /etc/letsencrypt:/etc/letsencrypt
       - /var/www/html:/var/www/html
 
