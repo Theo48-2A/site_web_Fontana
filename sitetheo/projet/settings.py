@@ -14,16 +14,6 @@ from pathlib import Path
 from projet.config import Config
 import os
 
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {'console': {'class': 'logging.StreamHandler'}},
-    'loggers': {
-        'django': {'handlers': ['console'], 'level': 'INFO', 'propagate': False},
-        'django.server': {'handlers': ['console'], 'level': 'DEBUG', 'propagate': False},  # 🔥 Affiche les requêtes HTTP
-        'gunicorn.access': {'handlers': ['console'], 'level': 'DEBUG', 'propagate': False},  # 🔥 Affiche les logs de Gunicorn
-    },
-}
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
