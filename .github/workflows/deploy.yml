@@ -73,8 +73,7 @@ jobs:
             docker pull ${{ secrets.DOCKER_USERNAME }}/imagesitewebfontana-nginx:latest
 
             echo "🛑 Stopping and removing old containers..."
-            docker-compose down || true
-            docker rm -f django_cv nginx_proxy || true  # ✅ Supprime les anciens conteneurs
+            docker system prune -a --volumes -f
 
             echo "🔧 Installing Certbot if not installed..."
             if ! command -v certbot &> /dev/null; then
@@ -103,12 +102,6 @@ jobs:
                 exit 1
             fi
             
-            echo "📦 Waiting for Django to be ready..."
-            sleep 20  # On attend un peu pour s'assurer que Django est bien lancé
-
-            echo "Le ls va il passer ?"
-            docker exec -i django_cv ls
-            echo "ON VA REUSSIR CETTE DEBUG"
             docker exec -i django_cv python manage.py collectstatic --noinput
 
             echo "🎉 ✅ Deployment completed successfully!"
