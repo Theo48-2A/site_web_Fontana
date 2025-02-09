@@ -39,7 +39,7 @@ if Config.ENVIRONMENT == "production":
 
 ############ CONFIGURATION POUR LES FICHIERS STATIQUES ##########################
 # 🔹 Où Django va chercher les fichiers statiques en dev
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "sitetheo/static")]
 print("STATICFILES_DIRS : " , STATICFILES_DIRS)
 # 🔹 URL publique des fichiers statiques
 STATIC_URL = '/static/'
