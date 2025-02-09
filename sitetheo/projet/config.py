@@ -21,9 +21,9 @@ class Config:
         return value
 
     # Vérification stricte des variables
-    ENVIRONMENT = get_env_var.__func__("ENVIRONMENT") == "True"  # Converti en booléen
-    DJANGO_SECRET_KEY = get_env_var.__func__("DJANGO_SECRET_KEY")  # Clé secrète Django
-    ALLOWED_HOSTS = get_env_var.__func__("ALLOWED_HOSTS").split(",")  # Convertit en liste
+    ENVIRONMENT = get_env_var.__func__("ENVIRONMENT")
+    DJANGO_SECRET_KEY = get_env_var.__func__("DJANGO_SECRET_KEY")
+    ALLOWED_HOSTS = get_env_var.__func__("ALLOWED_HOSTS").split(",")
 
 
 # Instance globale de Config

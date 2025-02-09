@@ -26,6 +26,11 @@ SECRET_KEY = Config.DJANGO_SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = Config.ENVIRONMENT == "development"
+print("\nDEBUG : " , DEBUG)
+print("Config.ENVIRONMENT : " , Config.ENVIRONMENT)
+print("Config.DJANGO_SECRET_KEY : " , Config.DJANGO_SECRET_KEY)
+print("Config.ALLOWED_HOSTS : " , Config.ALLOWED_HOSTS)
+
 
 ALLOWED_HOSTS = Config.ALLOWED_HOSTS
 
@@ -40,6 +45,20 @@ STATIC_URL = '/static/'
 # 🔹 En production, Django va copier tous les fichiers ici
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles") if not DEBUG else None
 #################################################################################
+
+
+# Obtenir le chemin absolu du dossier actuel
+current_dir = os.getcwd()
+print(f"Dossier actuel : {current_dir}\n")
+
+# Lister tous les fichiers et sous-dossiers dans le dossier actuel
+print("Contenu du dossier :")
+for item in os.listdir(current_dir):
+    item_path = os.path.join(current_dir, item)
+    if os.path.isdir(item_path):
+        print(f"📂 [Dossier] {item}")
+    else:
+        print(f"📄 [Fichier] {item}")
 
 INSTALLED_APPS = [
     'django.contrib.admin',
