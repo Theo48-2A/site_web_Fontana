@@ -102,5 +102,22 @@ jobs:
                 echo "❌ ERROR: Nginx container is not running!"
                 exit 1
             fi
+            
+            echo "📦 Waiting for Django to be ready..."
+            sleep 20  # On attend un peu pour s'assurer que Django est bien lancé
+
+            echo "📦 Running collectstatic inside Django container..."
+            docker-compose exec -T django_cv bash -c "
+               export DJANGO_SETTINGS_MODULE=projet.settings && \
+               python manage.py collectstatic --noinput > /app/collectstatic.log 2>&1
+            "
+
+            echo "🔍 Checking collectstatic logs..."
+            docker-compose exec django_cv cat /app/collectstatic.log
+
+            echo "🔍 Verifying static files..."
+            docker-compose exec django_cv ls -lah /app/staticfiles
+
+            echo "🎉 ✅ Deployment completed successfully!"
 
             echo "🎉 ✅ Deployment completed successfully!"
