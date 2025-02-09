@@ -92,8 +92,18 @@ jobs:
 
             echo "✅ Running new containers..."
             docker-compose --env-file .env up -d --force-recreate
-            sleep 60
-            python manage.py collectstatic --noinput
+            
+            echo "📦 Running collectstatic inside Django container..."
+            sleep 60  # Donne du temps à Django pour démarrer
+
+            docker-compose exec django_cv bash -c "
+              python manage.py collectstatic --noinput
+            "
+
+            echo "🔍 Verifying if static files exist..."
+            docker-compose exec django_cv ls -lah /app/staticfiles
+
+
             echo "📦 Running collectstatic inside Django container..."
 
             echo "🔍 Verifying if containers are running..."
