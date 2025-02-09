@@ -40,10 +40,14 @@ if Config.ENVIRONMENT == "production":
 ############ CONFIGURATION POUR LES FICHIERS STATIQUES ##########################
 # 🔹 Où Django va chercher les fichiers statiques en dev
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+print("STATICFILES_DIRS : " , STATICFILES_DIRS)
 # 🔹 URL publique des fichiers statiques
 STATIC_URL = '/static/'
+print("STATIC_URL : " , STATIC_URL)
 # 🔹 En production, Django va copier tous les fichiers ici
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles") if not DEBUG else None
+
+print("STATIC_ROOT : " , STATIC_ROOT)
 #################################################################################
 
 
