@@ -72,10 +72,13 @@ jobs:
             docker pull ${{ secrets.DOCKER_USERNAME }}/imagesitewebfontana-django:latest
             docker pull ${{ secrets.DOCKER_USERNAME }}/imagesitewebfontana-nginx:latest
 
-            echo "🛑 Stopping and removing old containers..."
-            docker-compose down -v
-            docker system prune -a --volumes -f
-
+            echo "🛑 Arrêt et suppression des anciens conteneurs..."
+            docker-compose down -v || true
+            
+            echo "🧹 Nettoyage complet de Docker..."
+            docker system prune -a --volumes -f || true
+            
+            echo "✅ Nettoyage terminé."
 
             echo "🔧 Installing Certbot if not installed..."
             if ! command -v certbot &> /dev/null; then
