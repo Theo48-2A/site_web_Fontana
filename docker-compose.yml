@@ -10,7 +10,7 @@ services:
     networks:
       - internal_network  # 🔒 Communication interne uniquement
     volumes:
-      - ./sitetheo/staticfiles:/app/sitetheo/staticfiles
+      - ./sitetheo/staticfiles:/app/staticfiles
 
   nginx:
     image: ${DOCKER_USERNAME}/imagesitewebfontana-nginx:latest
